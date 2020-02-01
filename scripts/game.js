@@ -12,6 +12,7 @@ class Game {
     //bellow we command the consctructer to use method paint when we [new Game($canvas)]
     this.paint();
     this.keyListner();
+    this.loop();
   }
 
   paint() {
@@ -43,5 +44,10 @@ class Game {
     });
   }
 
-  loop() {} //we will need for the enemies
+  loop() {
+    setInterval(() => {
+      console.log('loop');
+      //this.enemy.move();
+    }, this.enemy.speed);
+  }
 }

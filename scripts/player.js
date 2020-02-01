@@ -53,11 +53,12 @@ class Player {
         break;
     }
   }
-  isTherePlastic(playerCol, playerRow) {
+  isTherePlastic(identityCol, identityRow) {
+    //check if the player is going to colide with plastic
     let plasticLoad = this.game.grid.plastic;
     let result;
     for (let plasticSq of plasticLoad) {
-      if (playerCol === plasticSq.col && playerRow === plasticSq.row) {
+      if (identityCol === plasticSq.col && identityRow === plasticSq.row) {
         return true;
       }
     }
