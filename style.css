@@ -1,13 +1,16 @@
 body {
   font-family: 'Bangers', cursive;
   font-size: 1.5em;
+  color: rgb(10, 81, 99);
   display: flex;
   justify-content: space-evenly;
   text-align: center;
+  background-image: url('./images/water-polluted-plastic-garbage.jpg');
+  background-size: cover;
 }
 
 canvas {
-  background-color: white;
+  background-color: rgb(85, 202, 231);
 }
 
 .rightside {

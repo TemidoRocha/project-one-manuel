@@ -29,8 +29,7 @@ class Grid {
     }
   }
   makePlastic() {
-    var ctx = this.game.ctx; //we need so we can access canvas from class Game
-
+    
     for (let i = 0; i <= 50; i++) {
       //to increase the number of plastic just increase the i to increase the array
       this.setRandomPosition();
