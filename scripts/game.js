@@ -18,6 +18,7 @@ class Game {
     this.grid.paintGrid();
     this.grid.paintPlastic();
     this.player.paintCharacter();
+    this.enemy.paintPirates();
   }
 
   clearCanvas() {
