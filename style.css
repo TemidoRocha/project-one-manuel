@@ -6,11 +6,13 @@ body {
   text-align: center;
 }
 
+canvas {
+  background-color: white;
+}
+
 .rightside {
   display: flex;
   flex-direction: column;
-}
-
-canvas {
-  background-color: aqua;
+  justify-content: space-around;
+  margin-top: 150px;
 }
