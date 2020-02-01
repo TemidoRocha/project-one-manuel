@@ -16,3 +16,7 @@ canvas {
   justify-content: space-around;
   margin-top: 150px;
 }
+
+audio {
+  margin-top: 15%;
+}
