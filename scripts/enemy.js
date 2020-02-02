@@ -37,21 +37,22 @@ class Enemy {
   }
 
   moveEnemy() {
-    let value = Math.floor(Math.random * 5);
+    let value = Math.floor(Math.random() * 5);
     var pirates = this.pirates;
-    console.log(pirates);
-    /*
-    for (let pirateInd in pirates) {
-      let enemy0Col = this.col; //created this variable in order to compare to all the plastic
-      let enemy0Row = this.row; //created this variable in order to compare to all the plastic
+
+    for (let pirateEl of pirates) {
+      let enemy0Col = pirateEl.col; //created this variable in order to compare to all the plastic
+      let enemy0Row = pirateEl.row; //created this variable in order to compare to all the plastic
 
       switch (value) {
         case 1: //left
-          if (this.col > 0) {
+          if (pirateEl.col > 0) {
             enemy0Col -= 50;
             if (!this.game.player.isTherePlastic(enemy0Col, enemy0Row)) {
-              this.col -= 50;
+              pirateEl.col -= 50;
             }
+            //console.log(pirates);       with this two lines we can verify that we are mutating both objects
+            //console.log(this.pirates);
           }
           break;
         case 2: //up
@@ -79,6 +80,6 @@ class Enemy {
           }
           break;
       }
-    }*/
+    }
   }
 }

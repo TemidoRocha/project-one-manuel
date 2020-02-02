@@ -45,9 +45,10 @@ class Game {
   }
 
   loop() {
+    //https://coderwall.com/p/65073w/using-this-in-scope-based-settimeout-setinterval
+    const _this = this; //connect a variable to our current scope by defining a new variable and assigning this to it.
     setInterval(() => {
-      console.log('loop');
-      //this.enemy.move();
+      _this.enemy.moveEnemy();
     }, this.enemy.speed);
   }
 }
