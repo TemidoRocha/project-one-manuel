@@ -20,6 +20,7 @@ class Game {
     this.grid.paintPlastic();
     this.player.paintCharacter();
     this.enemy.paintPirates();
+    this.bomb.paintBomb();
   }
 
   clearCanvas() {
@@ -29,6 +30,7 @@ class Game {
   keyListner() {
     window.addEventListener('keydown', event => {
       if (
+        event.code === 'Space' || //space
         event.keyCode === 37 || //left
         event.keyCode === 38 || //up
         event.keyCode === 39 || //right
@@ -38,6 +40,7 @@ class Game {
       }
 
       this.player.move(event); //takes the argument event to move the player
+      this.bomb.drop(event);
 
       this.clearCanvas();
       this.paint();

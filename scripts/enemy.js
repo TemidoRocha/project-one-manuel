@@ -5,12 +5,13 @@ class Enemy {
     this.row;
     this.speed = 300; //em milisengundos
     this.pirates = [];
+    this.numberOfPirates = 3;
 
     this.createPirates();
   }
 
   createPirates() {
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < this.numberOfPirates; i++) {
       //the number of pirates shoul increase with the level
 
       this.setRandomPosition();
