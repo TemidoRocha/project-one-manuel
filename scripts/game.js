@@ -49,6 +49,8 @@ class Game {
     const _this = this; //connect a variable to our current scope by defining a new variable and assigning this to it.
     setInterval(() => {
       _this.enemy.moveEnemy();
+      _this.clearCanvas();
+      _this.paint();
     }, this.enemy.speed);
   }
 }

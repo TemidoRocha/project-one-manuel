@@ -3,7 +3,7 @@ class Enemy {
     this.game = game;
     this.col;
     this.row;
-    this.speed = 1000; //em milisengundos
+    this.speed = 300; //em milisengundos
     this.pirates = [];
 
     this.createPirates();
@@ -56,26 +56,26 @@ class Enemy {
           }
           break;
         case 2: //up
-          if (this.row > 0) {
+          if (pirateEl.row > 0) {
             enemy0Row -= 50;
             if (!this.game.player.isTherePlastic(enemy0Col, enemy0Row)) {
-              this.row -= 50;
+              pirateEl.row -= 50;
             }
           }
           break;
         case 3: //right
-          if (this.col < $canvas.width - SQUARE_SIZE) {
+          if (pirateEl.col < $canvas.width - SQUARE_SIZE) {
             enemy0Col += 50;
             if (!this.game.player.isTherePlastic(enemy0Col, enemy0Row)) {
-              this.col += 50;
+              pirateEl.col += 50;
             }
           }
           break;
         case 4: //down
-          if (this.row < $canvas.height - SQUARE_SIZE) {
+          if (pirateEl.row < $canvas.height - SQUARE_SIZE) {
             enemy0Row += 50;
             if (!this.game.player.isTherePlastic(enemy0Col, enemy0Row)) {
-              this.row += 50;
+              pirateEl.row += 50;
             }
           }
           break;
