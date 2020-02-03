@@ -19,9 +19,6 @@ class Game {
   };
   startGame() {
     this.keyListner();
-    this.restart();
-  }
-  restart() {
     this.grid = new Grid(this);
     this.player = new Player(this);
     this.bomb = new Bomb(this);

@@ -26,8 +26,17 @@ class Enemy {
     var pirates = this.pirates;
 
     for (let pirateInd of pirates) {
-      ctx.fillStyle = 'black';
-      ctx.fillRect(pirateInd.col, pirateInd.row, SQUARE_SIZE, SQUARE_SIZE);
+      ctx.drawImage(
+        pirateImg,
+        0,
+        0,
+        200,
+        200,
+        pirateInd.col,
+        pirateInd.row,
+        SQUARE_SIZE,
+        SQUARE_SIZE
+      );
     }
   }
 
@@ -35,6 +44,12 @@ class Enemy {
     this.col = SQUARE_SIZE * Math.floor(Math.random() * 16); //16 columns (800/50)
     this.row = SQUARE_SIZE * Math.floor(Math.random() * 10); //10 rows (500/50)
   }
+  checkPirateCleanPlayer = (enemy0Col, enemy0Row) => {
+    //check collision between pirate and player
+    if (enemy0Col === this.game.player.col && enemy0Row === this.game.player.row) {
+      return (this.game.gameRun = false);
+    }
+  };
 
   moveEnemy() {
     let value = Math.floor(Math.random() * 5);
@@ -51,8 +66,7 @@ class Enemy {
             if (!this.game.player.isTherePlastic(enemy0Col, enemy0Row)) {
               pirateEl.col -= 50;
             }
-            //console.log(pirates);       with this two lines we can verify that we are mutating both objects
-            //console.log(this.pirates);
+            this.checkPirateCleanPlayer(enemy0Col, enemy0Row);
           }
           break;
         case 2: //up
@@ -61,6 +75,7 @@ class Enemy {
             if (!this.game.player.isTherePlastic(enemy0Col, enemy0Row)) {
               pirateEl.row -= 50;
             }
+            this.checkPirateCleanPlayer(enemy0Col, enemy0Row);
           }
           break;
         case 3: //right
@@ -69,6 +84,7 @@ class Enemy {
             if (!this.game.player.isTherePlastic(enemy0Col, enemy0Row)) {
               pirateEl.col += 50;
             }
+            this.checkPirateCleanPlayer(enemy0Col, enemy0Row);
           }
           break;
         case 4: //down
@@ -77,6 +93,7 @@ class Enemy {
             if (!this.game.player.isTherePlastic(enemy0Col, enemy0Row)) {
               pirateEl.row += 50;
             }
+            this.checkPirateCleanPlayer(enemy0Col, enemy0Row);
           }
           break;
       }

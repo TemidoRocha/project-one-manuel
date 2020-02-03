@@ -8,8 +8,7 @@ class Player {
 
   paintCharacter() {
     var ctx = this.game.ctx;
-    ctx.fillStyle = 'orange';
-    ctx.fillRect(this.col, this.row, SQUARE_SIZE, SQUARE_SIZE);
+    ctx.drawImage(playerImg, this.col, this.row, SQUARE_SIZE, SQUARE_SIZE);
   }
   move(event) {
     var value = event.keyCode;

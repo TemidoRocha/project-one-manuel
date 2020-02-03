@@ -42,8 +42,7 @@ class Grid {
     var ctx = this.game.ctx;
     for (let i = 0; i < this.plastic.length; i++) {
       //we need the length to be sure all the plastic inside the array is read and not more otherwise will display undefined
-      ctx.fillStyle = 'red';
-      ctx.fillRect(this.plastic[i].col, this.plastic[i].row, SQUARE_SIZE, SQUARE_SIZE);
+      ctx.drawImage(plasticImg, this.plastic[i].col, this.plastic[i].row, SQUARE_SIZE, SQUARE_SIZE);
     }
   }
 

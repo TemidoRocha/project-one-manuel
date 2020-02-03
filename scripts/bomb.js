@@ -14,8 +14,7 @@ class Bomb {
   };
   paintBomb = () => {
     var ctx = this.game.ctx;
-    ctx.fillStyle = 'purple';
-    ctx.fillRect(this.col, this.row, SQUARE_SIZE, SQUARE_SIZE);
+    ctx.drawImage(bombImg, this.col, this.row, SQUARE_SIZE, SQUARE_SIZE);
   };
   bombPlastic = () => {
     let plasticLoad = this.game.grid.plastic; //array with all the plastic

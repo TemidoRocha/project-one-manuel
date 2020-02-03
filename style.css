@@ -10,7 +10,7 @@ body {
 }
 
 canvas {
-  background-color: rgb(85, 202, 231);
+  background-image: url('./images/water.png');
 }
 
 .rightside {
