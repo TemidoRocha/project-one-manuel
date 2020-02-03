@@ -1,5 +1,6 @@
 const $canvas = document.querySelector('canvas');
 
-const startGame = new Game($canvas);
+let game = new Game($canvas);
 
 //console.dir($canvas);
+

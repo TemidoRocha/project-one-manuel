@@ -69,8 +69,7 @@ class Bomb {
         (player.col === this.col && player.row === this.row + SQUARE_SIZE) ||
         (player.col === this.col + SQUARE_SIZE && player.row === this.row + SQUARE_SIZE)
       ) {
-        delete player.col;
-        delete player.row;
+        this.game.gameRun = false;
       }
     }
     delete this.col;

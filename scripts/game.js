@@ -1,22 +1,39 @@
 class Game {
   constructor($canvas) {
     this.ctx = $canvas.getContext('2d');
+    this.gameRun = false;
+    this.speed = 300; // milisengundos, aftects the enemy speed with the loop
 
+    //this.projectile = new Projectile(this);
+    //this.powerAdd = new PowerAdd(this);
+    this.activateStartKey();
+  }
+  activateStartKey = () => {
+    let _this = this;
+    document.getElementById('start').onclick = function() {
+      if (!_this.gameRun) {
+        _this.startGame();
+      }
+    };
+  };
+  startGame() {
+    this.keyListner();
+    this.restart();
+    console.log(this.speed);
+  }
+  restart() {
     this.player = new Player(this);
     this.bomb = new Bomb(this);
     this.enemy = new Enemy(this);
     this.grid = new Grid(this);
-    //this.projectile = new Projectile(this);
-    //this.powerAdd = new PowerAdd(this);
-
-    //bellow we command the consctructer to use method paint when we [new Game($canvas)]
-    this.paint();
-    this.keyListner();
     this.loop();
+    this.gameRun = true;
+    this.time = new Timer(this);
   }
 
   paint() {
-    this.grid.paintGrid();
+    //this.grid.paintGrid();
+    this.clearCanvas();
     this.grid.paintPlastic();
     this.player.paintCharacter();
     this.enemy.paintPirates();
@@ -38,22 +55,29 @@ class Game {
       ) {
         event.preventDefault(); // Stop the default behavior (moving the screen to the left/up/right/down)
       }
+      if (this.gameRun) {
+        this.player.move(event); //takes the argument event to move the player
+        this.bomb.drop(event);
 
-      this.player.move(event); //takes the argument event to move the player
-      this.bomb.drop(event);
-
-      this.clearCanvas();
-      this.paint();
+        this.paint(); //taking out this the movement of the ship is slower as per loop
+      }
     });
   }
-
+  checkGameIsRunning = () => {
+    if (!this.gameRun) {
+      this.clearCanvas();
+      this.ctx.drawImage(gameOver, 0, 0, 800, 500);
+    } else {
+      this.enemy.moveEnemy();
+      this.paint();
+      this.loop();
+    }
+  };
   loop() {
     //https://coderwall.com/p/65073w/using-this-in-scope-based-settimeout-setinterval
     const _this = this; //connect a variable to our current scope by defining a new variable and assigning this to it.
-    setInterval(() => {
-      _this.enemy.moveEnemy();
-      _this.clearCanvas();
-      _this.paint();
-    }, this.enemy.speed);
+    setTimeout(() => {
+      _this.checkGameIsRunning();
+    }, this.speed);
   }
 }

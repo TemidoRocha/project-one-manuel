@@ -3,7 +3,6 @@ class Enemy {
     this.game = game;
     this.col;
     this.row;
-    this.speed = 300; //em milisengundos
     this.pirates = [];
     this.numberOfPirates = 3;
 
