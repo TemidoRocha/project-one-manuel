@@ -29,7 +29,6 @@ class Grid {
     }
   }
   makePlastic() {
-    
     for (let i = 0; i <= 50; i++) {
       //to increase the number of plastic just increase the i to increase the array
       this.setRandomPosition();

@@ -3,6 +3,7 @@ class Game {
     this.ctx = $canvas.getContext('2d');
     this.gameRun = false;
     this.speed = 300; // milisengundos, aftects the enemy speed with the loop
+    this.score = 0;
 
     //this.projectile = new Projectile(this);
     //this.powerAdd = new PowerAdd(this);
@@ -19,13 +20,12 @@ class Game {
   startGame() {
     this.keyListner();
     this.restart();
-    console.log(this.speed);
   }
   restart() {
+    this.grid = new Grid(this);
     this.player = new Player(this);
     this.bomb = new Bomb(this);
     this.enemy = new Enemy(this);
-    this.grid = new Grid(this);
     this.loop();
     this.gameRun = true;
     this.time = new Timer(this);
@@ -64,9 +64,15 @@ class Game {
     });
   }
   checkGameIsRunning = () => {
+    score.innerText = this.score;
+
     if (!this.gameRun) {
       this.clearCanvas();
       this.ctx.drawImage(gameOver, 0, 0, 800, 500);
+    } else if (this.grid.plastic.length < 1 && this.gameRun === true) {
+      this.gameRun = false;
+      this.clearCanvas();
+      this.ctx.drawImage(youWin, 0, 0, 800, 500);
     } else {
       this.enemy.moveEnemy();
       this.paint();

@@ -39,6 +39,7 @@ class Bomb {
           plasticLoad[i].row === this.row + SQUARE_SIZE)
       ) {
         plasticLoad.splice(i, 1);
+        this.game.score += 5;
       }
     }
     for (let i = pirates.length - 1; i >= 0; i--) {
@@ -56,6 +57,7 @@ class Bomb {
       ) {
         {
           pirates.splice(i, 1);
+          this.game.score += 5;
         }
       }
       if (

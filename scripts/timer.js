@@ -5,7 +5,6 @@ class Timer {
   }
   setTimer() {
     let _this = this;
-    console.log(timer.innerText);
     if (this.game.gameRun && timer.innerText > 0) {
       setTimeout(() => {
         timer.innerText -= 1;
