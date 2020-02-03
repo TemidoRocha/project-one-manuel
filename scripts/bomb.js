@@ -3,6 +3,7 @@ class Bomb {
     this.game = game;
     this.col;
     this.row;
+    this.speed = 500;
   }
   drop = event => {
     if (event.key === ' ') {
@@ -36,7 +37,9 @@ class Bomb {
         (plasticLoad[i].col === this.col + SQUARE_SIZE &&
           plasticLoad[i].row === this.row + SQUARE_SIZE)
       ) {
-        //console.log(plasticLoad[i]); //remove the plastic
+        let cleanPlastic = setTimeout(() => {
+          plasticLoad.splice(i, 1); //remove all the plastic 1 square near the bomb
+        }, this.speed);
       }
     }
     for (let i = pirates.length - 1; i >= 0; i--) {
@@ -52,7 +55,7 @@ class Bomb {
         (pirates[i].col === this.col && pirates[i].row === this.row + SQUARE_SIZE) ||
         (pirates[i].col === this.col + SQUARE_SIZE && pirates[i].row === this.row + SQUARE_SIZE)
       ) {
-        console.log(pirates[i]); //kill the pirates
+        pirates.splice(i, 1); //kill the pirates
       }
     }
   };
