@@ -51,10 +51,11 @@ class Enemy {
     this.col = SQUARE_SIZE * Math.floor(Math.random() * 16); //16 columns (800/50)
     this.row = SQUARE_SIZE * Math.floor(Math.random() * 10); //10 rows (500/50)
   }
+
   checkPirateCleanPlayer = (enemy0Col, enemy0Row) => {
     //check collision between pirate and player
     if (enemy0Col === this.game.player.col && enemy0Row === this.game.player.row) {
-      return (this.game.gameRun = false);
+      this.game.gameRun = false;
     }
   };
 

@@ -4,4 +4,4 @@ let game = new Game($canvas);
 
 //console.dir($canvas);
 
-game.ctx.drawImage(intro, 50, 50, 700, 400);
+game.ctx.drawImage(intro, 400, 400, 350, 75);

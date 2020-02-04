@@ -4,14 +4,16 @@ class Game {
     this.gameRun = false;
     this.speed = 300; // milisengundos, aftects the enemy speed with the loop
     this.score = 0;
-
     //this.projectile = new Projectile(this);
     //this.powerAdd = new PowerAdd(this);
     this.activateStartKey();
+    this.keyListner();
   }
+
   intro() {
-    ctx.drawImage(gameOver, 50, 50, 700, 400);
+    ctx.drawImage(intro, 50, 50, 700, 400);
   }
+
   activateStartKey = () => {
     let _this = this;
     document.getElementById('start').onclick = function() {
@@ -20,16 +22,16 @@ class Game {
       }
     };
   };
+
   startGame() {
     this.grid = new Grid(this);
-    this.keyListner();
     this.power = new Power(this);
     this.player = new Player(this);
     this.bomb = new Bomb(this);
     this.enemy = new Enemy(this);
-    this.loop();
     this.gameRun = true;
     this.time = new Timer(this);
+    this.loop();
   }
 
   paint() {
@@ -44,6 +46,16 @@ class Game {
 
   clearCanvas() {
     this.ctx.clearRect(0, 0, $canvas.width, $canvas.height);
+  }
+
+  paintGameOver() {
+    this.clearCanvas();
+    this.ctx.drawImage(gameOver, 0, 0, 800, 500);
+  }
+
+  paintGameWon() {
+    this.clearCanvas();
+    this.ctx.drawImage(youWin, 0, 0, 800, 500);
   }
 
   keyListner() {
@@ -65,6 +77,7 @@ class Game {
       }
     });
   }
+  /*
   checkGameIsRunning = () => {
     score.innerText = this.score;
 
@@ -82,11 +95,29 @@ class Game {
       this.loop();
     }
   };
+  */
+
   loop() {
     //https://coderwall.com/p/65073w/using-this-in-scope-based-settimeout-setinterval
     const _this = this; //connect a variable to our current scope by defining a new variable and assigning this to it.
-    setTimeout(() => {
-      _this.checkGameIsRunning();
-    }, this.speed);
+    score.innerText = this.score;
+
+    if (this.gameRun && this.grid.plastic.length > 0) {
+      this.enemy.moveEnemy();
+      this.paint();
+    }
+
+    if (!this.gameRun) {
+      this.paintGameOver();
+    } else if (this.grid.plastic.length < 1 && this.gameRun) {
+      this.gameRun = false;
+      this.paintGameWon();
+    }
+
+    if (this.gameRun) {
+      setTimeout(() => {
+        _this.loop();
+      }, this.speed);
+    }
   }
 }

@@ -30,6 +30,7 @@ class Player {
             this.col -= 50;
             this.lOrR = playerImgL;
             this.game.power.checkWhaleColision();
+            this.checkPirateCleanPlayer();
           }
         }
         break;
@@ -39,6 +40,7 @@ class Player {
           if (!this.isTherePlastic(player0Col, player0Row)) {
             this.row -= 50;
             this.game.power.checkWhaleColision();
+            this.checkPirateCleanPlayer();
           }
         }
         break;
@@ -49,6 +51,7 @@ class Player {
             this.col += 50;
             this.lOrR = playerImgR;
             this.game.power.checkWhaleColision();
+            this.checkPirateCleanPlayer();
           }
         }
         break;
@@ -58,11 +61,15 @@ class Player {
           if (!this.isTherePlastic(player0Col, player0Row)) {
             this.row += 50;
             this.game.power.checkWhaleColision();
+            this.checkPirateCleanPlayer();
           }
         }
         break;
     }
+
+    this.game.paint();
   }
+
   isTherePlastic(identityCol, identityRow) {
     //check if the player is going to colide with plastic
     let plasticLoad = this.game.grid.plastic;
@@ -73,4 +80,16 @@ class Player {
       }
     }
   }
+  checkPirateCleanPlayer = () => {
+    let pirates = this.game.enemy.pirates;
+    console.log('hi');
+    for (let pirateEl of pirates) {
+      let enemy0Col = pirateEl.col;
+      let enemy0Row = pirateEl.row;
+      //check collision between pirate and player
+      if (enemy0Col === this.col && enemy0Row === this.row) {
+        this.game.gameRun = false;
+      }
+    }
+  };
 }
