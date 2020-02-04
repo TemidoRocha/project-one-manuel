@@ -9,6 +9,9 @@ class Game {
     //this.powerAdd = new PowerAdd(this);
     this.activateStartKey();
   }
+  intro() {
+    ctx.drawImage(gameOver, 50, 50, 700, 400);
+  }
   activateStartKey = () => {
     let _this = this;
     document.getElementById('start').onclick = function() {
@@ -18,8 +21,9 @@ class Game {
     };
   };
   startGame() {
-    this.keyListner();
     this.grid = new Grid(this);
+    this.keyListner();
+    this.power = new Power(this);
     this.player = new Player(this);
     this.bomb = new Bomb(this);
     this.enemy = new Enemy(this);
@@ -31,6 +35,7 @@ class Game {
   paint() {
     //this.grid.paintGrid();
     this.clearCanvas();
+    this.power.paintPowerUp();
     this.grid.paintPlastic();
     this.player.paintCharacter();
     this.enemy.paintPirates();
@@ -56,7 +61,7 @@ class Game {
         this.player.move(event); //takes the argument event to move the player
         this.bomb.drop(event);
 
-        this.paint(); //taking out this the movement of the ship is slower as per loop
+        //this.paint(); //taking out this the movement of the ship is slower as per loop
       }
     });
   }
@@ -64,6 +69,7 @@ class Game {
     score.innerText = this.score;
 
     if (!this.gameRun) {
+      this.gameRun = false;
       this.clearCanvas();
       this.ctx.drawImage(gameOver, 0, 0, 800, 500);
     } else if (this.grid.plastic.length < 1 && this.gameRun === true) {

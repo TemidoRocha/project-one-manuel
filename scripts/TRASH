@@ -1,42 +1,8 @@
-animation for Pirates
 
-var shift = 0;
-    var frameWidth = 200;
-    var frameHeight = 200;
-    var totalFrames = 4;
-    var currentFrame = 0;
-paintPirates() {
-    var ctx = this.game.ctx;
-    var pirates = this.pirates;
-    var shift = 0;
-    var frameWidth = 200;
-    var frameHeight = 200;
-    var totalFrames = 4;
-    var currentFrame = 0;
 
-    for (let pirateInd of pirates) {
-      for (let i = 0; i < 4; i++) {
-        ctx.clearRect(pirateInd.col, pirateInd.row, SQUARE_SIZE, SQUARE_SIZE);
-        //draw each frame + place them in the middle
-        ctx.drawImage(
-          pirateImg,
-          shift,
-          0,
-          frameWidth,
-          frameHeight,
-          pirateInd.col,
-          pirateInd.row,
-          SQUARE_SIZE,
-          SQUARE_SIZE
-        );
-        shift += frameWidth;
-        //Start at the beginning once you've reached the end of your sprite!
-        if (currentFrame == totalFrames) {
-          shift = 0;
-          currentFrame = 0;
-        }
-        currentFrame++;
-      }
-      //requestAnimationFrame(this.paintPirates);
-    }
-  }
+"Every year, about 8 million tons of plastic waste escapes into the oceans from coastal nations. 
+That’s the equivalent of setting five garbage bags full of trash on every foot of coastline around the world."
+-- As per National Gerographic, PUBLISHED JUNE 7, 2019
+
+Let's clean the oceans
+arrows to move your ship and space to destroy all the plastic and pirates around you.

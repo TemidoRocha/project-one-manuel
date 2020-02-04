@@ -27,7 +27,6 @@ class Enemy {
     var pirates = this.pirates;
 
     for (let pirateInd of pirates) {
-      console.log(pirateInd.direction);
       switch (pirateInd.direction) {
         case 0: //s
         case 200: //w
@@ -60,12 +59,12 @@ class Enemy {
   };
 
   moveEnemy() {
-    let value = Math.floor(Math.random() * 5);
     var pirates = this.pirates;
 
     for (let pirateEl of pirates) {
       let enemy0Col = pirateEl.col; //created this variable in order to compare to all the plastic
       let enemy0Row = pirateEl.row; //created this variable in order to compare to all the plastic
+      let value = Math.floor(Math.random() * 5);
 
       switch (
         value //direction value s: 0 w:200 e: 400 n: 800

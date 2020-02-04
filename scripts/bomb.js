@@ -3,18 +3,22 @@ class Bomb {
     this.game = game;
     this.col;
     this.row;
+    this.bombCol;
+    this.bombRow;
+    this.dropped = false;
     this.speed = 2000;
   }
   drop = event => {
-    if (event.key === ' ') {
+    if (event.key === ' ' && this.dropped === false) {
       this.col = this.game.player.col;
       this.row = this.game.player.row;
       this.cleanTimeout(); //inserts timeout for checking plastic, pirates and player
+      this.dropped = true;
     }
   };
   paintBomb = () => {
     var ctx = this.game.ctx;
-    ctx.drawImage(bombImg, this.col, this.row, SQUARE_SIZE, SQUARE_SIZE);
+    ctx.drawImage(bombImg, this.col + 10, this.row + 10, SQUARE_SIZE - 20, SQUARE_SIZE - 20);
   };
   bombPlastic = () => {
     let plasticLoad = this.game.grid.plastic; //array with all the plastic
@@ -73,8 +77,12 @@ class Bomb {
         this.game.gameRun = false;
       }
     }
+    this.bombCol = this.col;
+    this.bombRow = this.row;
     delete this.col;
     delete this.row;
+    //after it deletes the bomb goes the explosion
+    this.explosion();
   };
   cleanTimeout() {
     //this function will remove the
@@ -83,5 +91,39 @@ class Bomb {
     let clean = setTimeout(() => {
       _bombPlastic();
     }, this.speed);
+  }
+  explosion() {
+    let col = this.bombCol;
+    let row = this.bombRow;
+    let _this = this;
+
+    var ctx = this.game.ctx;
+    ctx.clearRect(col - 50, row - 50, SQUARE_SIZE + 100, SQUARE_SIZE + 100);
+    //draw each frame + place them in the middle
+
+    ctx.drawImage(
+      explImg,
+      shift,
+      100,
+      frameWidth,
+      frameHeight,
+      col - 50,
+      row - 50,
+      SQUARE_SIZE + 100,
+      SQUARE_SIZE + 100
+    );
+    shift += frameWidth + 11;
+    currentFrame++;
+    setTimeout(() => {
+      if (currentFrame < totalFrames) {
+        this.explosion();
+      } else {
+        delete this.bombCol;
+        delete this.bombRow;
+        this.dropped = false;
+        shift = 0;
+        currentFrame = 0;
+      }
+    }, 100);
   }
 }

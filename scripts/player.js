@@ -3,12 +3,17 @@ class Player {
     this.game = game;
     this.col = 0;
     this.row = 0;
+    this.lOrR = playerImgL;
     //this.health = 100 => if we manage to introduce guns for the pirates
   }
 
   paintCharacter() {
     var ctx = this.game.ctx;
-    ctx.drawImage(playerImg, this.col, this.row, SQUARE_SIZE, SQUARE_SIZE);
+    switch (this.lOrR) {
+      case playerImgL:
+      case playerImgR:
+        ctx.drawImage(this.lOrR, this.col, this.row, SQUARE_SIZE, SQUARE_SIZE);
+    }
   }
   move(event) {
     var value = event.keyCode;
@@ -23,6 +28,8 @@ class Player {
           player0Col -= 50;
           if (!this.isTherePlastic(player0Col, player0Row)) {
             this.col -= 50;
+            this.lOrR = playerImgL;
+            this.game.power.checkWhaleColision();
           }
         }
         break;
@@ -31,6 +38,7 @@ class Player {
           player0Row -= 50;
           if (!this.isTherePlastic(player0Col, player0Row)) {
             this.row -= 50;
+            this.game.power.checkWhaleColision();
           }
         }
         break;
@@ -39,6 +47,8 @@ class Player {
           player0Col += 50;
           if (!this.isTherePlastic(player0Col, player0Row)) {
             this.col += 50;
+            this.lOrR = playerImgR;
+            this.game.power.checkWhaleColision();
           }
         }
         break;
@@ -47,6 +57,7 @@ class Player {
           player0Row += 50;
           if (!this.isTherePlastic(player0Col, player0Row)) {
             this.row += 50;
+            this.game.power.checkWhaleColision();
           }
         }
         break;
