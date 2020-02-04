@@ -3,6 +3,7 @@ class Enemy {
     this.game = game;
     this.col;
     this.row;
+    this.direction = 0; //s: 0 w:200 e: 400 n: 800
     this.pirates = [];
     this.numberOfPirates = 3;
 
@@ -16,7 +17,7 @@ class Enemy {
       this.setRandomPosition();
       if (this.col >= 150 || this.row >= 150) {
         //square(0, 0, 150, 150) will be saved for the character
-        this.pirates.push({ col: this.col, row: this.row });
+        this.pirates.push({ col: this.col, row: this.row, direction: this.direction });
       }
     }
   }
@@ -26,17 +27,24 @@ class Enemy {
     var pirates = this.pirates;
 
     for (let pirateInd of pirates) {
-      ctx.drawImage(
-        pirateImg,
-        0,
-        0,
-        200,
-        200,
-        pirateInd.col,
-        pirateInd.row,
-        SQUARE_SIZE,
-        SQUARE_SIZE
-      );
+      console.log(pirateInd.direction);
+      switch (pirateInd.direction) {
+        case 0: //s
+        case 200: //w
+        case 400: //e
+        case 600: //n
+          ctx.drawImage(
+            pirateImg,
+            0,
+            pirateInd.direction,
+            200,
+            195,
+            pirateInd.col,
+            pirateInd.row,
+            SQUARE_SIZE,
+            SQUARE_SIZE
+          );
+      }
     }
   }
 
@@ -59,12 +67,15 @@ class Enemy {
       let enemy0Col = pirateEl.col; //created this variable in order to compare to all the plastic
       let enemy0Row = pirateEl.row; //created this variable in order to compare to all the plastic
 
-      switch (value) {
+      switch (
+        value //direction value s: 0 w:200 e: 400 n: 800
+      ) {
         case 1: //left
           if (pirateEl.col > 0) {
             enemy0Col -= 50;
             if (!this.game.player.isTherePlastic(enemy0Col, enemy0Row)) {
               pirateEl.col -= 50;
+              pirateEl.direction = 200;
             }
             this.checkPirateCleanPlayer(enemy0Col, enemy0Row);
           }
@@ -74,6 +85,7 @@ class Enemy {
             enemy0Row -= 50;
             if (!this.game.player.isTherePlastic(enemy0Col, enemy0Row)) {
               pirateEl.row -= 50;
+              pirateEl.direction = 600;
             }
             this.checkPirateCleanPlayer(enemy0Col, enemy0Row);
           }
@@ -83,6 +95,7 @@ class Enemy {
             enemy0Col += 50;
             if (!this.game.player.isTherePlastic(enemy0Col, enemy0Row)) {
               pirateEl.col += 50;
+              pirateEl.direction = 400;
             }
             this.checkPirateCleanPlayer(enemy0Col, enemy0Row);
           }
@@ -92,6 +105,7 @@ class Enemy {
             enemy0Row += 50;
             if (!this.game.player.isTherePlastic(enemy0Col, enemy0Row)) {
               pirateEl.row += 50;
+              pirateEl.direction = 600;
             }
             this.checkPirateCleanPlayer(enemy0Col, enemy0Row);
           }

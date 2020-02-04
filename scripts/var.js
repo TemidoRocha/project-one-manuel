@@ -18,6 +18,7 @@ playerImg.src = './images/sailboat.png';
 
 let pirateImg = new Image();
 pirateImg.src = './images/pirates.png';
+//pirateImg.addEventListener("load", loadImage, false); 
 
 let plasticImg = new Image();
 plasticImg.src = './images/plastic.png';
