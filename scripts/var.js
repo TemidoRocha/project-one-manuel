@@ -43,3 +43,13 @@ var frameWidthW = 120;
 var frameHeightW = 60;
 var totalFramesW = 7;
 var currentFrameW = 0;
+
+//arrrow images for the bullet
+let arrowR = new Image();
+arrowR.src = './images/arrow right.png';
+let arrowL = new Image();
+arrowL.src = './images/arrow left.png';
+let arrowU = new Image();
+arrowU.src = './images/arrow up.png';
+let arrowD = new Image();
+arrowD.src = './images/arrow down.png';

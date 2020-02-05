@@ -3,7 +3,7 @@ class Grid {
     this.game = game;
     this.col;
     this.row;
-    this.pollution = 30;
+    this.pollution = 30; //it is used with the level 
     this.plastic = []; //separate makePlastic from paint otherwise it was generating randomly every key press
 
     this.makePlastic();

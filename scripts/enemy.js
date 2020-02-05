@@ -3,12 +3,10 @@ class Enemy {
     this.game = game;
     this.col;
     this.row;
-    this.health = 50;
+    this.health = 45; //it is affected by the arrows(bullets)
     this.direction = 0; //s: 0 w:200 e: 400 n: 800
     this.pirates = [];
     this.numberOfPirates = 3;
-
-    //this.createPirates();// inserted on game.level()
   }
 
   createPirates() {

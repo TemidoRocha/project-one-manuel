@@ -3,7 +3,7 @@ class Bomb {
     this.game = game;
     this.col;
     this.row;
-    this.bombCol;
+    this.bombCol; //used this and the vriable bellow to produce the explosion besides deleting the image of the bomb
     this.bombRow;
     this.dropped = false;
     this.speed = 2000;
