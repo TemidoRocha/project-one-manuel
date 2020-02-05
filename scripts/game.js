@@ -76,6 +76,7 @@ class Game {
   keyListner() {
     window.addEventListener('keydown', event => {
       if (
+        event.key === 'g' ||
         event.code === 'Space' || //space
         event.keyCode === 37 || //left
         event.keyCode === 38 || //up
@@ -86,9 +87,14 @@ class Game {
       }
       if (this.gameRun) {
         this.player.move(event); //takes the argument event to move the player
-        this.bomb.drop(event);
-
-        //this.paint(); //taking out this the movement of the ship is slower as per loop
+        if (event.key === ' ') {
+          //it was placed here to avoid running all events
+          this.bomb.drop(event);
+        }
+        if (event.key === 'g') {
+          this.bullet.fireBullet(event);
+          //it was placed here to avoid running all events
+        }
       }
     });
   }

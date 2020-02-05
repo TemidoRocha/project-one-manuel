@@ -3,16 +3,17 @@ class Player {
     this.game = game;
     this.col = 0;
     this.row = 0;
-    this.lOrR = playerImgL;
+    this.leftOrRight = playerImgL;
+    this.direction; //L R U D =>  it will influence the bullet
     //this.health = 100 => if we manage to introduce guns for the pirates
   }
 
   paintCharacter() {
     var ctx = this.game.ctx;
-    switch (this.lOrR) {
+    switch (this.leftOrRight) {
       case playerImgL:
       case playerImgR:
-        ctx.drawImage(this.lOrR, this.col, this.row, SQUARE_SIZE, SQUARE_SIZE);
+        ctx.drawImage(this.leftOrRight, this.col, this.row, SQUARE_SIZE, SQUARE_SIZE);
     }
   }
   move(event) {
@@ -26,9 +27,10 @@ class Player {
       case 37: //left
         if (this.col > 0) {
           player0Col -= 50;
+          this.direction = 'L';
           if (!this.isTherePlastic(player0Col, player0Row)) {
             this.col -= 50;
-            this.lOrR = playerImgL;
+            this.leftOrRight = playerImgL;
             this.game.power.checkWhaleColision();
             this.checkPirateCleanPlayer();
           }
@@ -37,6 +39,7 @@ class Player {
       case 38: //up
         if (this.row > 0) {
           player0Row -= 50;
+          this.direction = 'U';
           if (!this.isTherePlastic(player0Col, player0Row)) {
             this.row -= 50;
             this.game.power.checkWhaleColision();
@@ -47,9 +50,10 @@ class Player {
       case 39: //right
         if (this.col < $canvas.width - SQUARE_SIZE) {
           player0Col += 50;
+          this.direction = 'R';
           if (!this.isTherePlastic(player0Col, player0Row)) {
             this.col += 50;
-            this.lOrR = playerImgR;
+            this.leftOrRight = playerImgR;
             this.game.power.checkWhaleColision();
             this.checkPirateCleanPlayer();
           }
@@ -58,6 +62,7 @@ class Player {
       case 40: //down
         if (this.row < $canvas.height - SQUARE_SIZE) {
           player0Row += 50;
+          this.direction = 'D';
           if (!this.isTherePlastic(player0Col, player0Row)) {
             this.row += 50;
             this.game.power.checkWhaleColision();

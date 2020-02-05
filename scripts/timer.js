@@ -8,8 +8,8 @@ class Timer {
     let _this = this;
     if (this.game.gameRun && timer.innerText > 0) {
       setTimeout(() => {
-        this.timerCount -= 1;
-        timer.innerText = this.timerCount;
+        _this.timerCount -= 1;
+        timer.innerText = _this.timerCount;
         _this.setTimer();
       }, 1000);
     } else {

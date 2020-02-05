@@ -43,12 +43,12 @@ class Bomb {
           plasticLoad[i].row === this.row + SQUARE_SIZE)
       ) {
         plasticLoad.splice(i, 1);
-        //i--;
         this.game.score += 5;
       }
       if (this.superBomb) {
-        console.log(this.col);
-        console.log(plasticLoad[i]);
+        i--; //se não retirar vai dar undefined pois já fez splice acima
+        // console.log(this.col);
+        // console.log(plasticLoad[i]);
         if (
           (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row - SQUARE_SIZE * 2) ||
           (plasticLoad[i].col === this.col - SQUARE_SIZE * 2 && plasticLoad[i].row === this.row) ||
