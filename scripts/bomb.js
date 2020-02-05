@@ -7,7 +7,7 @@ class Bomb {
     this.bombRow;
     this.dropped = false;
     this.speed = 2000;
-    this.superBomb = false; //super bomb is giving error, it can't read valu of col in line 50
+    this.superBomb = false; //super bomb is changing in the loop of the game
   }
   drop = event => {
     if (event.key === ' ' && this.dropped === false) {
@@ -44,9 +44,10 @@ class Bomb {
       ) {
         plasticLoad.splice(i, 1);
         this.game.score += 5;
+        i--;
       }
       if (this.superBomb) {
-        i--; //se não retirar vai dar undefined pois já fez splice acima
+        //se não retirar vai dar undefined pois já fez splice acima
         // console.log(this.col);
         // console.log(plasticLoad[i]);
         if (

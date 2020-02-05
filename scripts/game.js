@@ -15,6 +15,7 @@ class Game {
   }
 
   level() {
+    //here I use thee input range to alter the level of the game
     let level = document.getElementById('level').value; //catch the value from input range
 
     this.grid.pollution += level * 10; //level 1 => 60plastic --- level 5 => 100
@@ -22,6 +23,8 @@ class Game {
 
     this.enemy.numberOfPirates += Math.floor(level / 2); //level 1 => 3 pirates --- level 5 => 5 pirates
     this.enemy.createPirates();
+
+    this.power.whaleTimeAdded += level * 3; //the whale time added is set for 15 in power.js
   }
 
   activateStartKey = () => {
@@ -103,7 +106,9 @@ class Game {
     //https://coderwall.com/p/65073w/using-this-in-scope-based-settimeout-setinterval
     const _this = this; //connect a variable to our current scope by defining a new variable and assigning this to it.
     score.innerText = this.score;
-
+    if (this.score > 40 && this.score < 100) {
+      this.bomb.superBomb = true; //one had up
+    }
     if (this.gameRun && this.grid.plastic.length > 0) {
       this.enemy.moveEnemy();
       this.paint();

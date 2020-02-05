@@ -1,8 +1,9 @@
 class Power {
   constructor(game) {
     this.game = game;
-    this.col;
-    this.row;
+    this.col; //whale
+    this.row; //whale
+    this.whaleTimeAdded = 15;
     this.addPowerUp();
   }
   addPowerUp() {
@@ -20,7 +21,6 @@ class Power {
     if (this.game.time.timerCount < 20) {
       ctx.clearRect(col, row, SQUARE_SIZE, SQUARE_SIZE);
       //draw each frame + place them in the middle
-
       ctx.drawImage(
         whaleImg,
         0,
@@ -34,16 +34,13 @@ class Power {
       );
     }
   }
-  setRandomPosition() {
-    this.col = SQUARE_SIZE * Math.floor(Math.random() * 16); //16 columns (800/50)
-    this.row = SQUARE_SIZE * Math.floor(Math.random() * 10); //10 rows (500/50)
-  }
   checkWhaleColision() {
     // console.dir(this.player.col);
     if (this.col === this.game.player.col && this.row === this.game.player.row) {
-      this.game.time.timerCount += 15;
+      this.game.time.timerCount += this.whaleTimeAdded;
       delete this.col;
       delete this.row;
     }
   }
+  superBombDrop() {}
 }
