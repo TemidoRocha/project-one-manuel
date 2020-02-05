@@ -69,4 +69,19 @@ class Bullet {
     delete this.col;
     delete this.row;
   }
+  destroyPirateShip() {
+    var pirates = this.game.enemy.pirates; //array with all the pirates
+    for (let i = pirates.length - 1; i >= 0; i--) {
+      if (
+        //check if you hit the pirate
+        this.col > pirates[i].col &&
+        this.col < pirates[i].col + SQUARE_SIZE &&
+        this.row > pirates[i].row &&
+        this.row < pirates[i].row + SQUARE_SIZE
+      ) {
+        // pirates.splice(i, 1);
+        // this.game.score += 10;
+      }
+    }
+  }
 }
