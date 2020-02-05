@@ -7,6 +7,7 @@ class Bomb {
     this.bombRow;
     this.dropped = false;
     this.speed = 2000;
+    this.superBomb = false; //super bomb is giving error, it can't read valu of col in line 50
   }
   drop = event => {
     if (event.key === ' ' && this.dropped === false) {
@@ -42,7 +43,21 @@ class Bomb {
           plasticLoad[i].row === this.row + SQUARE_SIZE)
       ) {
         plasticLoad.splice(i, 1);
+        //i--;
         this.game.score += 5;
+      }
+      if (this.superBomb) {
+        console.log(this.col);
+        console.log(plasticLoad[i]);
+        if (
+          (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row - SQUARE_SIZE * 2) ||
+          (plasticLoad[i].col === this.col - SQUARE_SIZE * 2 && plasticLoad[i].row === this.row) ||
+          (plasticLoad[i].col === this.col + SQUARE_SIZE * 2 && plasticLoad[i].row === this.row) ||
+          (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row + SQUARE_SIZE * 2)
+        ) {
+          plasticLoad.splice(i, 1);
+          this.game.score += 5;
+        }
       }
     }
     for (let i = pirates.length - 1; i >= 0; i--) {
@@ -99,8 +114,8 @@ class Bomb {
 
     var ctx = this.game.ctx;
     if (this.game.gameRun) {
-    ctx.clearRect(col - 50, row - 50, SQUARE_SIZE + 100, SQUARE_SIZE + 100);
-    //draw each frame + place them in the middle
+      ctx.clearRect(col - 50, row - 50, SQUARE_SIZE + 100, SQUARE_SIZE + 100);
+      //draw each frame + place them in the middle
 
       ctx.drawImage(
         explImg,

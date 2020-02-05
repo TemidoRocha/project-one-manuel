@@ -3,12 +3,12 @@ class Grid {
     this.game = game;
     this.col;
     this.row;
-    this.pollution = 50;
+    this.pollution = 30;
     this.plastic = []; //separate makePlastic from paint otherwise it was generating randomly every key press
 
     this.makePlastic();
   }
-  paintGrid() {
+  paintGrid() { //not active => this will make a orange grid on the canvas
     //paint the grid
     var ctx = this.game.ctx; //we need so we can access canvas from class Game
     for (let i = 0; i <= 10; i++) {

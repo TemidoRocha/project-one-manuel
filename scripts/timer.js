@@ -13,7 +13,7 @@ class Timer {
         _this.setTimer();
       }, 1000);
     } else {
-      return (this.game.gameRun = false);
+      this.game.gameRun = false;
     }
   }
 }

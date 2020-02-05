@@ -4,8 +4,7 @@ class Game {
     this.gameRun = false;
     this.speed = 300; // milisengundos, aftects the enemy speed with the loop
     this.score = 0;
-    //this.projectile = new Projectile(this);
-    //this.powerAdd = new PowerAdd(this);
+
     this.intro();
     this.activateStartKey();
     this.keyListner();
@@ -35,13 +34,16 @@ class Game {
   };
 
   startGame() {
+    this.openFullscreen();
     this.grid = new Grid(this);
     this.power = new Power(this);
     this.enemy = new Enemy(this);
     this.player = new Player(this);
     this.bomb = new Bomb(this);
+    this.bullet = new Bullet(this);
     this.gameRun = true;
     this.time = new Timer(this);
+    this.score = 0;
     this.level();
     this.loop();
   }
@@ -58,6 +60,7 @@ class Game {
     this.player.paintCharacter();
     this.enemy.paintPirates();
     this.bomb.paintBomb();
+    this.bullet.paintBullet();
   }
 
   paintGameOver() {
@@ -111,6 +114,36 @@ class Game {
       setTimeout(() => {
         _this.loop();
       }, this.speed);
+    }
+  }
+  openFullscreen() {
+    var elem = document.documentElement;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      /* Firefox */
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      /* IE/Edge */
+      elem.msRequestFullscreen();
+    }
+  }
+  closeFullscreen() {
+    //not using for now
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      /* Firefox */
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      /* Chrome, Safari and Opera */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      /* IE/Edge */
+      document.msExitFullscreen();
     }
   }
 }

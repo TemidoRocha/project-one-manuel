@@ -3,6 +3,7 @@ class Enemy {
     this.game = game;
     this.col;
     this.row;
+    this.health = 50;
     this.direction = 0; //s: 0 w:200 e: 400 n: 800
     this.pirates = [];
     this.numberOfPirates = 3;
@@ -17,7 +18,12 @@ class Enemy {
       this.setRandomPosition();
       if (this.col >= 150 || this.row >= 150) {
         //square(0, 0, 150, 150) will be saved for the character
-        this.pirates.push({ col: this.col, row: this.row, direction: this.direction });
+        this.pirates.push({
+          col: this.col,
+          row: this.row,
+          direction: this.direction,
+          health: this.health
+        });
       }
     }
   }
