@@ -16,14 +16,13 @@ class Game {
   }
 
   level() {
-    let level = document.getElementById('level').value;
-    this.grid.pollution *= level;
+    let level = document.getElementById('level').value; //catch the value from input range
+
+    this.grid.pollution += level * 10; //level 1 => 60plastic --- level 5 => 100
     this.grid.makePlastic();
-    console.log(this.grid.pollution);
-    for (let i = 0; i < level - 1; i++) {
-      this.grid.makePlastic();
-      this.enemy.createPirates();
-    }
+
+    this.enemy.numberOfPirates += Math.floor(level / 2); //level 1 => 3 pirates --- level 5 => 5 pirates
+    this.enemy.createPirates();
   }
 
   activateStartKey = () => {

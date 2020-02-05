@@ -7,7 +7,7 @@ class Enemy {
     this.pirates = [];
     this.numberOfPirates = 3;
 
-    this.createPirates();// inserted on game.level()
+    //this.createPirates();// inserted on game.level()
   }
 
   createPirates() {
