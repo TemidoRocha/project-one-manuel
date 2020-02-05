@@ -17,20 +17,22 @@ class Power {
     let _this = this;
 
     var ctx = this.game.ctx;
-    ctx.clearRect(col, row, SQUARE_SIZE, SQUARE_SIZE);
-    //draw each frame + place them in the middle
+    if (this.game.time.timerCount < 20) {
+      ctx.clearRect(col, row, SQUARE_SIZE, SQUARE_SIZE);
+      //draw each frame + place them in the middle
 
-    ctx.drawImage(
-      whaleImg,
-      0,
-      shiftW,
-      frameWidthW,
-      frameHeightW,
-      this.col,
-      this.row + 25,
-      SQUARE_SIZE,
-      SQUARE_SIZE / 2
-    );
+      ctx.drawImage(
+        whaleImg,
+        0,
+        shiftW,
+        frameWidthW,
+        frameHeightW,
+        this.col,
+        this.row + 25,
+        SQUARE_SIZE,
+        SQUARE_SIZE / 2
+      );
+    }
   }
   setRandomPosition() {
     this.col = SQUARE_SIZE * Math.floor(Math.random() * 16); //16 columns (800/50)

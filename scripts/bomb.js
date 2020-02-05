@@ -98,20 +98,22 @@ class Bomb {
     let _this = this;
 
     var ctx = this.game.ctx;
+    if (this.game.gameRun) {
     ctx.clearRect(col - 50, row - 50, SQUARE_SIZE + 100, SQUARE_SIZE + 100);
     //draw each frame + place them in the middle
 
-    ctx.drawImage(
-      explImg,
-      shift,
-      100,
-      frameWidth,
-      frameHeight,
-      col - 50,
-      row - 50,
-      SQUARE_SIZE + 100,
-      SQUARE_SIZE + 100
-    );
+      ctx.drawImage(
+        explImg,
+        shift,
+        100,
+        frameWidth,
+        frameHeight,
+        col - 50,
+        row - 50,
+        SQUARE_SIZE + 100,
+        SQUARE_SIZE + 100
+      );
+    }
     shift += frameWidth + 11;
     currentFrame++;
     setTimeout(() => {

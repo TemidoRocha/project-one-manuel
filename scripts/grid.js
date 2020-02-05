@@ -3,6 +3,7 @@ class Grid {
     this.game = game;
     this.col;
     this.row;
+    this.pollution = 50;
     this.plastic = []; //separate makePlastic from paint otherwise it was generating randomly every key press
 
     this.makePlastic();
@@ -29,8 +30,8 @@ class Grid {
     }
   }
   makePlastic() {
-    for (let i = 0; i <= 50; i++) {
-      //to increase the number of plastic just increase the i to increase the array
+    for (let i = 0; i <= this.pollution; i++) {
+      //to increase the number of plastic just increase the this.pollution to increase the array
       this.setRandomPosition();
       if (this.col >= 150 || this.row >= 150) {
         //square(0, 0, 150, 150) will be saved for the character

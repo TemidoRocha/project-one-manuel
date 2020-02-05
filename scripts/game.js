@@ -6,12 +6,24 @@ class Game {
     this.score = 0;
     //this.projectile = new Projectile(this);
     //this.powerAdd = new PowerAdd(this);
+    this.intro();
     this.activateStartKey();
     this.keyListner();
   }
 
   intro() {
-    ctx.drawImage(intro, 50, 50, 700, 400);
+    this.ctx.drawImage(intro, 400, 400, 350, 75);
+  }
+
+  level() {
+    let level = document.getElementById('level').value;
+    this.grid.pollution *= level;
+    this.grid.makePlastic();
+    console.log(this.grid.pollution);
+    for (let i = 0; i < level - 1; i++) {
+      this.grid.makePlastic();
+      this.enemy.createPirates();
+    }
   }
 
   activateStartKey = () => {
@@ -26,12 +38,17 @@ class Game {
   startGame() {
     this.grid = new Grid(this);
     this.power = new Power(this);
+    this.enemy = new Enemy(this);
     this.player = new Player(this);
     this.bomb = new Bomb(this);
-    this.enemy = new Enemy(this);
     this.gameRun = true;
     this.time = new Timer(this);
+    this.level();
     this.loop();
+  }
+
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, $canvas.width, $canvas.height);
   }
 
   paint() {
@@ -42,10 +59,6 @@ class Game {
     this.player.paintCharacter();
     this.enemy.paintPirates();
     this.bomb.paintBomb();
-  }
-
-  clearCanvas() {
-    this.ctx.clearRect(0, 0, $canvas.width, $canvas.height);
   }
 
   paintGameOver() {
@@ -77,25 +90,6 @@ class Game {
       }
     });
   }
-  /*
-  checkGameIsRunning = () => {
-    score.innerText = this.score;
-
-    if (!this.gameRun) {
-      this.gameRun = false;
-      this.clearCanvas();
-      this.ctx.drawImage(gameOver, 0, 0, 800, 500);
-    } else if (this.grid.plastic.length < 1 && this.gameRun === true) {
-      this.gameRun = false;
-      this.clearCanvas();
-      this.ctx.drawImage(youWin, 0, 0, 800, 500);
-    } else {
-      this.enemy.moveEnemy();
-      this.paint();
-      this.loop();
-    }
-  };
-  */
 
   loop() {
     //https://coderwall.com/p/65073w/using-this-in-scope-based-settimeout-setinterval

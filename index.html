@@ -13,27 +13,25 @@
       <canvas width="800" height="500"></canvas>
     </section>
 
-    <section>
-      <div class="rightside">
+    <section class="rightside">
+      <div class="inline">
         <h2>score</h2>
         <p id="score">0</p>
       </div>
-      <div>
+      <div class="inline">
         <h2>Timer</h2>
         <p id="timer">60</p>
       </div>
       <div>
         <button id="start">Start Game</button>
       </div>
-      <!-- <audio
-        id="audio-player"
-        controls="controls"
-        loop
-        autoplay
-        src="./audio/Exploring Town.ogg"
-        type="audio/ogg"
-      ></audio> 
-    </section> -->
+      <div>
+        <input type="range" id="level" name="level" min="1" max="5" step="1" />
+      </div>
+      <audio id="audio-player" controls="controls" <!-- autoplay -->
+        loop src="./audio/Exploring Town.ogg" type="audio/ogg" >
+      </audio>
+    </section>
     <!--all the scripts for JS are bellow-->
     <script src="./scripts/var.js"></script>
     <script src="./scripts/timer.js"></script>

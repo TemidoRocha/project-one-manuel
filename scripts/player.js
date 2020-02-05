@@ -82,7 +82,7 @@ class Player {
   }
   checkPirateCleanPlayer = () => {
     let pirates = this.game.enemy.pirates;
-    console.log('hi');
+
     for (let pirateEl of pirates) {
       let enemy0Col = pirateEl.col;
       let enemy0Row = pirateEl.row;

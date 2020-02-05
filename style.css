@@ -9,7 +9,7 @@ body {
   background-size: cover;
 }
 
-body button {
+button {
   font-size: 30px;
   font-family: 'Bangers', cursive;
   background-color: rgb(199, 102, 12);
@@ -29,7 +29,12 @@ canvas {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-top: 150px;
+  margin-top: 0px;
+  text-align: center;
+}
+.inline {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 audio {
