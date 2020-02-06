@@ -106,8 +106,12 @@ class Game {
     //https://coderwall.com/p/65073w/using-this-in-scope-based-settimeout-setinterval
     const _this = this; //connect a variable to our current scope by defining a new variable and assigning this to it.
     score.innerText = this.score;
-    if (this.score > 40 && this.score < 100) {
+    if (this.score > 150 && this.score < 200) {
       this.bomb.superBomb = true; //one had up
+      this.power.changeSuperBombAdvertise();
+    } else {
+      this.bomb.superBomb = false;
+      this.power.cleanSuperSuperBombAdvertise();
     }
     if (this.gameRun && this.grid.plastic.length > 0) {
       this.enemy.moveEnemy();

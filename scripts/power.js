@@ -42,5 +42,33 @@ class Power {
       delete this.row;
     }
   }
-  superBombDrop() {}
+  generateRandomColor() {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+  }
+  changeBackgroundColor() {
+    var titleSuperBomb = document.getElementById('titleSuperBomb');
+    titleSuperBomb.style.backgroundColor = this.generateRandomColor();
+  }
+  changeTitleSuperBomb() {
+    var titleSuperBomb = document.getElementById('titleSuperBomb');
+    titleSuperBomb.style.color = 'white';
+
+    if (titleSuperBomb.innerHTML == 'Plastic Hunters') {
+      titleSuperBomb.innerHTML = 'SUPER';
+    } else if (titleSuperBomb.innerHTML == 'SUPER') {
+      titleSuperBomb.innerHTML = 'BOMB';
+    } else if (titleSuperBomb.innerHTML == 'BOMB') {
+      titleSuperBomb.innerHTML = 'Plastic Hunters';
+    }
+  }
+  changeSuperBombAdvertise() {
+    this.changeBackgroundColor();
+    this.changeTitleSuperBomb();
+  }
+  cleanSuperSuperBombAdvertise() {
+    var titleSuperBomb = document.getElementById('titleSuperBomb');
+    titleSuperBomb.innerHTML == 'Plastic Hunters';
+    titleSuperBomb.style.backgroundColor = '';
+    titleSuperBomb.style.color = '';
+  }
 }

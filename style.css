@@ -29,12 +29,17 @@ canvas {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-top: 0px;
+  margin-top: 5%;
   text-align: center;
 }
 .inline {
   display: flex;
   justify-content: space-evenly;
+}
+#titleSuperBomb {
+  text-align: center;
+  color: rgb(199, 102, 12);
+  padding: 2%;
 }
 
 audio {
