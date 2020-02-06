@@ -44,6 +44,7 @@ class Bullet {
   }
   moveBullet() {
     if (this.game.gameRun) this.game.paint();
+    arrowAudio.play();
     this.destroyPirateShip();
     switch (this.direction) {
       case 'L':
@@ -81,6 +82,7 @@ class Bullet {
     }
   }
   removeBullet() {
+    arrowAudio.pause();
     delete this.col;
     delete this.row;
   }

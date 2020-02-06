@@ -56,4 +56,13 @@ arrowD.src = './images/arrow down.png';
 
 //audio
 let environment = new Audio();
-environment.src = './audio/Exploring Town.ogg';
+environment.src = './audio/environment.mp3'; //Exploring Town.ogg;
+
+let explosionAudio = new Audio();
+explosionAudio.src = './audio/explosion.mp3';
+
+let whaleAudio = new Audio();
+whaleAudio.src = './audio/whaleaudio.mp3';
+
+let arrowAudio = new Audio();
+arrowAudio.src = './audio/arrowaudio.mp3';

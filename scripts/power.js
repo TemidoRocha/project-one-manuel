@@ -19,6 +19,7 @@ class Power {
 
     var ctx = this.game.ctx;
     if (this.game.time.timerCount < 20) {
+      whaleAudio.play();
       ctx.clearRect(col, row, SQUARE_SIZE, SQUARE_SIZE);
       //draw each frame + place them in the middle
       ctx.drawImage(
@@ -37,6 +38,7 @@ class Power {
   checkWhaleColision() {
     // console.dir(this.player.col);
     if (this.col === this.game.player.col && this.row === this.game.player.row) {
+      whaleAudio.pause();
       this.game.time.timerCount += this.whaleTimeAdded;
       delete this.col;
       delete this.row;

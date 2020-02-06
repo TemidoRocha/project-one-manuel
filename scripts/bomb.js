@@ -127,6 +127,7 @@ class Bomb {
 
     var ctx = this.game.ctx;
     if (this.game.gameRun) {
+      explosionAudio.play();
       ctx.clearRect(col - 50, row - 50, SQUARE_SIZE + 100, SQUARE_SIZE + 100);
       //draw each frame + place them in the middle
 
