@@ -56,14 +56,16 @@ class Game {
   }
 
   paint() {
-    //this.grid.paintGrid();
-    this.clearCanvas();
-    this.power.paintPowerUp();
-    this.grid.paintPlastic();
-    this.player.paintCharacter();
-    this.enemy.paintPirates();
-    this.bomb.paintBomb();
-    this.bullet.paintBullet();
+    if (this.game.gameRun) {
+      //this.grid.paintGrid();
+      this.clearCanvas();
+      this.power.paintPowerUp();
+      this.grid.paintPlastic();
+      this.player.paintCharacter();
+      this.enemy.paintPirates();
+      this.bomb.paintBomb();
+      this.bullet.paintBullet();
+    }
   }
 
   gameOver() {
@@ -103,7 +105,7 @@ class Game {
   }
   runLogic() {
     score.innerText = this.score;
-    
+
     if (this.score > 150 && this.score < 200) {
       this.bomb.superBomb = true; //one had up
       this.power.changeSuperBombAdvertise();
