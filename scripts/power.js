@@ -67,8 +67,9 @@ class Power {
   }
   cleanSuperSuperBombAdvertise() {
     var titleSuperBomb = document.getElementById('titleSuperBomb');
-    titleSuperBomb.innerHTML == 'Plastic Hunters';
+    titleSuperBomb.innerHTML = 'Plastic Hunters';
     titleSuperBomb.style.backgroundColor = '';
     titleSuperBomb.style.color = '';
+    console.log(titleSuperBomb);
   }
 }
