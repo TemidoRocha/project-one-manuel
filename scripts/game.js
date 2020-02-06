@@ -66,12 +66,12 @@ class Game {
     this.bullet.paintBullet();
   }
 
-  paintGameOver() {
+  gameOver() {
     this.clearCanvas();
     this.ctx.drawImage(gameOver, 0, 0, 800, 500);
   }
 
-  paintGameWon() {
+  gameWon() {
     this.clearCanvas();
     this.ctx.drawImage(youWin, 0, 0, 800, 500);
   }
@@ -101,11 +101,9 @@ class Game {
       }
     });
   }
-
-  loop() {
-    //https://coderwall.com/p/65073w/using-this-in-scope-based-settimeout-setinterval
-    const _this = this; //connect a variable to our current scope by defining a new variable and assigning this to it.
+  runLogic() {
     score.innerText = this.score;
+    
     if (this.score > 150 && this.score < 200) {
       this.bomb.superBomb = true; //one had up
       this.power.changeSuperBombAdvertise();
@@ -117,13 +115,18 @@ class Game {
       this.enemy.moveEnemy();
       this.paint();
     }
-
     if (!this.gameRun) {
-      this.paintGameOver();
+      this.gameOver();
     } else if (this.grid.plastic.length < 1 && this.gameRun) {
       this.gameRun = false;
-      this.paintGameWon();
+      this.gameWon();
     }
+  }
+
+  loop() {
+    //https://coderwall.com/p/65073w/using-this-in-scope-based-settimeout-setinterval
+    const _this = this; //connect a variable to our current scope by defining a new variable and assigning this to it.
+    this.runLogic();
 
     if (this.gameRun) {
       setTimeout(() => {
