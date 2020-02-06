@@ -7,7 +7,7 @@ class Bomb {
     this.bombRow;
     this.dropped = false;
     this.speed = 2000;
-    this.superBomb = false; //super bomb is changing in the loop of the game
+    this.superBomb = false; //super bomb is changing in the loop of the game and do not affect pirates (only plastic)
   }
   drop = event => {
     if (event.key === ' ' && this.dropped === false) {
@@ -25,10 +25,12 @@ class Bomb {
     let plasticLoad = this.game.grid.plastic; //array with all the plastic
     var pirates = this.game.enemy.pirates; //array with all the pirates
     var player = this.game.player;
+
     for (let i = plasticLoad.length - 1; i >= 0; i--) {
       if (
-        //check if any plastic is near by one square in 8 directions
-        (plasticLoad[i].col === this.col - SQUARE_SIZE &&
+        (!this.superBomb &&
+          //checks 9squares arround the bomb position
+          plasticLoad[i].col === this.col - SQUARE_SIZE &&
           plasticLoad[i].row === this.row - SQUARE_SIZE) ||
         (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row - SQUARE_SIZE) ||
         (plasticLoad[i].col === this.col + SQUARE_SIZE &&
@@ -42,23 +44,33 @@ class Bomb {
         (plasticLoad[i].col === this.col + SQUARE_SIZE &&
           plasticLoad[i].row === this.row + SQUARE_SIZE)
       ) {
+        //check if any plastic is near by one square in 8 directions
         plasticLoad.splice(i, 1);
         this.game.score += 5;
-        i--;
-      }
-      if (this.superBomb) {
-        //se não retirar vai dar undefined pois já fez splice acima
-        // console.log(this.col);
-        // console.log(plasticLoad[i]);
-        if (
-          (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row - SQUARE_SIZE * 2) ||
-          (plasticLoad[i].col === this.col - SQUARE_SIZE * 2 && plasticLoad[i].row === this.row) ||
-          (plasticLoad[i].col === this.col + SQUARE_SIZE * 2 && plasticLoad[i].row === this.row) ||
-          (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row + SQUARE_SIZE * 2)
-        ) {
-          plasticLoad.splice(i, 1);
-          this.game.score += 5;
-        }
+      } else if (
+        (this.superBomb &&
+          //checks 9squares arround the bomb position
+          plasticLoad[i].col === this.col - SQUARE_SIZE &&
+          plasticLoad[i].row === this.row - SQUARE_SIZE) ||
+        (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row - SQUARE_SIZE) ||
+        (plasticLoad[i].col === this.col + SQUARE_SIZE &&
+          plasticLoad[i].row === this.row - SQUARE_SIZE) ||
+        (plasticLoad[i].col === this.col - SQUARE_SIZE && plasticLoad[i].row === this.row) ||
+        (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row) ||
+        (plasticLoad[i].col === this.col + SQUARE_SIZE && plasticLoad[i].row === this.row) ||
+        (plasticLoad[i].col === this.col - SQUARE_SIZE &&
+          plasticLoad[i].row === this.row + SQUARE_SIZE) ||
+        (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row + SQUARE_SIZE) ||
+        (plasticLoad[i].col === this.col + SQUARE_SIZE &&
+          plasticLoad[i].row === this.row + SQUARE_SIZE) ||
+        //checks 4 more squares y-2 & y+2 & x-2 & x+2
+        (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row - SQUARE_SIZE * 2) ||
+        (plasticLoad[i].col === this.col - SQUARE_SIZE * 2 && plasticLoad[i].row === this.row) ||
+        (plasticLoad[i].col === this.col + SQUARE_SIZE * 2 && plasticLoad[i].row === this.row) ||
+        (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row + SQUARE_SIZE * 2)
+      ) {
+        plasticLoad.splice(i, 1);
+        this.game.score += 5;
       }
     }
     for (let i = pirates.length - 1; i >= 0; i--) {
