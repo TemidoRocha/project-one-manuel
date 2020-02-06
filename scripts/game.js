@@ -11,7 +11,10 @@ class Game {
   }
 
   intro() {
-    this.ctx.drawImage(intro, 400, 400, 350, 75);
+    let _this = this;
+    window.addEventListener('load', function() {
+      _this.ctx.drawImage(intro, 100, 100, 600, 300);
+    });
   }
 
   level() {
@@ -104,7 +107,7 @@ class Game {
   runLogic() {
     score.innerText = this.score;
 
-    if ((this.score > 30 && this.score < 50) || (this.score > 70 && this.score < 100)) {
+    if ((this.score > 150 && this.score < 215) || (this.score > 450 && this.score < 515)) {
       this.bomb.superBomb = true; //one had up
       this.power.changeSuperBombAdvertise();
     } else {
