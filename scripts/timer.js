@@ -14,6 +14,7 @@ class Timer {
       }, 1000);
     } else {
       this.game.gameRun = false;
+      timer.innerText = 60;
     }
   }
 }

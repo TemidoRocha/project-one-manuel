@@ -131,6 +131,7 @@ class Game {
       }, this.speed);
     }
   }
+
   openFullscreen() {
     var elem = document.documentElement;
     if (elem.requestFullscreen) {
