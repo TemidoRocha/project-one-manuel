@@ -29,7 +29,7 @@ class Game {
     this.enemy.numberOfPirates += Math.floor(level / 2); //level 1 => 3 pirates --- level 5 => 5 pirates
     this.enemy.createPirates();
 
-    this.power.whaleTimeAdded += level * 3; //the whale time added is set for 15 in power.js
+    this.power.whaleTimeAdded += level * 2; //the whale time added is set for 15 in power.js
   }
 
   activateStartKey = () => {
