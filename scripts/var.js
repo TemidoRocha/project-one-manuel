@@ -53,3 +53,7 @@ let arrowU = new Image();
 arrowU.src = './images/arrow up.png';
 let arrowD = new Image();
 arrowD.src = './images/arrow down.png';
+
+//audio
+let environment = new Audio();
+environment.src = './audio/Exploring Town.ogg';

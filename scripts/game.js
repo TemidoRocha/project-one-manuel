@@ -4,9 +4,11 @@ class Game {
     this.gameRun = false;
     this.speed = 300; // milisengundos, aftects the enemy speed with the loop
     this.score = 0;
+    this.audioOnOff = false;
 
     this.intro();
     this.activateStartKey();
+    this.activateAudioOnOffKey();
     this.keyListner();
   }
 
@@ -35,6 +37,18 @@ class Game {
     document.getElementById('start').onclick = function() {
       if (!_this.gameRun) {
         _this.startGame();
+      }
+    };
+  };
+  activateAudioOnOffKey = () => {
+    let _this = this;
+    document.getElementById('audioOnOff').onclick = function() {
+      if (_this.audioOnOff === true) {
+        environment.pause();
+        _this.audioOnOff = false;
+      } else {
+        environment.play();
+        _this.audioOnOff = true;
       }
     };
   };

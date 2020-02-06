@@ -70,6 +70,5 @@ class Power {
     titleSuperBomb.innerHTML = 'Plastic Hunters';
     titleSuperBomb.style.backgroundColor = '';
     titleSuperBomb.style.color = '';
-    console.log(titleSuperBomb);
   }
 }
