@@ -104,7 +104,7 @@ class Game {
   runLogic() {
     score.innerText = this.score;
 
-    if (this.score > 150 && this.score < 200) {
+    if ((this.score > 150 && this.score < 200) || (this.score > 500 && this.score < 550)) {
       this.bomb.superBomb = true; //one had up
       this.power.changeSuperBombAdvertise();
     } else {
