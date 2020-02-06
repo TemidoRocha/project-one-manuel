@@ -29,7 +29,7 @@ canvas {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-top: 5%;
+  margin-top: 7%;
   text-align: center;
 }
 .inline {

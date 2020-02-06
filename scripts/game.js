@@ -56,16 +56,14 @@ class Game {
   }
 
   paint() {
-    if (this.game.gameRun) {
-      //this.grid.paintGrid();
-      this.clearCanvas();
-      this.power.paintPowerUp();
-      this.grid.paintPlastic();
-      this.player.paintCharacter();
-      this.enemy.paintPirates();
-      this.bomb.paintBomb();
-      this.bullet.paintBullet();
-    }
+    //this.grid.paintGrid();
+    this.clearCanvas();
+    this.power.paintPowerUp();
+    this.grid.paintPlastic();
+    this.player.paintCharacter();
+    this.enemy.paintPirates();
+    this.bomb.paintBomb();
+    this.bullet.paintBullet();
   }
 
   gameOver() {

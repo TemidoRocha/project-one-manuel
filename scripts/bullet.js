@@ -43,7 +43,7 @@ class Bullet {
     }
   }
   moveBullet() {
-    this.game.paint();
+    if (this.game.gameRun) this.game.paint();
     this.destroyPirateShip();
     switch (this.direction) {
       case 'L':
