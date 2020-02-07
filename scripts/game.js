@@ -124,9 +124,11 @@ class Game {
     if ((this.score > 150 && this.score < 215) || (this.score > 450 && this.score < 515)) {
       this.bomb.superBomb = true; //one had up
       this.power.changeSuperBombAdvertise();
+      console.log(this.bomb.superBomb, 'true');
     } else {
       this.bomb.superBomb = false;
       this.power.cleanSuperSuperBombAdvertise();
+      console.log(this.bomb.superBomb, 'false');
     }
     if (this.gameRun && this.grid.plastic.length > 0) {
       this.enemy.moveEnemy();

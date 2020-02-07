@@ -27,30 +27,30 @@ class Bomb {
     var player = this.game.player;
 
     for (let i = plasticLoad.length - 1; i >= 0; i--) {
-      if (
-        (!this.superBomb &&
+      if (this.superBomb === false) {
+        if (
           //checks 9squares arround the bomb position
-          plasticLoad[i].col === this.col - SQUARE_SIZE &&
-          plasticLoad[i].row === this.row - SQUARE_SIZE) ||
-        (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row - SQUARE_SIZE) ||
-        (plasticLoad[i].col === this.col + SQUARE_SIZE &&
-          plasticLoad[i].row === this.row - SQUARE_SIZE) ||
-        (plasticLoad[i].col === this.col - SQUARE_SIZE && plasticLoad[i].row === this.row) ||
-        (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row) ||
-        (plasticLoad[i].col === this.col + SQUARE_SIZE && plasticLoad[i].row === this.row) ||
-        (plasticLoad[i].col === this.col - SQUARE_SIZE &&
-          plasticLoad[i].row === this.row + SQUARE_SIZE) ||
-        (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row + SQUARE_SIZE) ||
-        (plasticLoad[i].col === this.col + SQUARE_SIZE &&
-          plasticLoad[i].row === this.row + SQUARE_SIZE)
-      ) {
-        //check if any plastic is near by one square in 8 directions
-        plasticLoad.splice(i, 1);
-        this.game.score += 5;
+          (plasticLoad[i].col === this.col - SQUARE_SIZE &&
+            plasticLoad[i].row === this.row - SQUARE_SIZE) ||
+          (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row - SQUARE_SIZE) ||
+          (plasticLoad[i].col === this.col + SQUARE_SIZE &&
+            plasticLoad[i].row === this.row - SQUARE_SIZE) ||
+          (plasticLoad[i].col === this.col - SQUARE_SIZE && plasticLoad[i].row === this.row) ||
+          (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row) ||
+          (plasticLoad[i].col === this.col + SQUARE_SIZE && plasticLoad[i].row === this.row) ||
+          (plasticLoad[i].col === this.col - SQUARE_SIZE &&
+            plasticLoad[i].row === this.row + SQUARE_SIZE) ||
+          (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row + SQUARE_SIZE) ||
+          (plasticLoad[i].col === this.col + SQUARE_SIZE &&
+            plasticLoad[i].row === this.row + SQUARE_SIZE)
+        ) {
+          //check if any plastic is near by one square in 8 directions
+          plasticLoad.splice(i, 1);
+          this.game.score += 5;
+        }
       } else if (
-        (this.superBomb &&
-          //checks 9squares arround the bomb position
-          plasticLoad[i].col === this.col - SQUARE_SIZE &&
+        //checks 9squares arround the bomb position
+        (plasticLoad[i].col === this.col - SQUARE_SIZE &&
           plasticLoad[i].row === this.row - SQUARE_SIZE) ||
         (plasticLoad[i].col === this.col && plasticLoad[i].row === this.row - SQUARE_SIZE) ||
         (plasticLoad[i].col === this.col + SQUARE_SIZE &&
